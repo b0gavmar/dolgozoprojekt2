@@ -14,15 +14,11 @@
         <ListBox
             ItemsSource="{Binding Dolgozok}"
             SelectedItem="{Binding CurrentEmployee}">
-            
         </ListBox>
         <StackPanel Orientation="Horizontal">
             <TextBox Text="{Binding NewSalary}"></TextBox>
-            <Button Command="{Binding RemoveEmployeeCommand}" Content="Add Worker" />
-                <Button Command="{Binding PaySalaryCommand}" Content="Remove Worker" />
+            <Button Command="{Binding PaySalaryCommand}" Content="Pay" />
+            <Button Command="{Binding RemoveEmployeeCommand}" Content="Remove Worker" CommandParameter="{Binding CurrentEmployee}"/>
         </StackPanel>
-        
-            
-        
     </StackPanel>
 </UserControl>

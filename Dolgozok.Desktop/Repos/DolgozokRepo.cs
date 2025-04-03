@@ -35,5 +35,10 @@ namespace Dolgozok.Desktop.Repos
         {
             return _context.Manyworkers.ToList();
         }
+
+        public void DeleteWorker(Employee e)
+        {
+            _context.Manyworkers.Remove(e);
+        }
     }
 }

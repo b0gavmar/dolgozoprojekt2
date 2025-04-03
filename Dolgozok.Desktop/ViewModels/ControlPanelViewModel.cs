@@ -54,12 +54,11 @@ namespace Dolgozok.Desktop
         }
 
         [RelayCommand]
-        public void PaySalary(Employee employee)
+        public void PaySalary()
         {
-            if (employee != null)
+            if (CurrentEmployee != null)
             {
-                employee.Pay(1000);
-                OnPropertyChanged(nameof(Dolgozok));
+                CurrentEmployee.Pay(NewSalary);
                 NumberOfWorkers = $"{_repo.GetNumberOfWorkers()} fő";
                 WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithSalary()} fő";
                 WorkersWithoutSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
@@ -67,16 +66,23 @@ namespace Dolgozok.Desktop
             }
         }
 
+
         [RelayCommand]
         public void RemoveEmployee(Employee employee)
         {
             if (employee != null)
             {
-                _dolgozok.Remove(employee);
+                _repo.DeleteWorker(employee);
                 NumberOfWorkers = $"{_repo.GetNumberOfWorkers()} fő";
                 WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithSalary()} fő";
                 WorkersWithoutSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
                 AverageSalary = $"{_repo.GetAverageSalary()} Ft";
+                _dolgozok.Clear();
+                foreach (var worker in _repo.GetAll())
+                {
+                    _dolgozok.Add(worker);
+                }
+                _currentEmployee = _dolgozok.FirstOrDefault();
             }
         }
     }
