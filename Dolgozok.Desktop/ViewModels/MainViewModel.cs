@@ -1,4 +1,5 @@
 ﻿using Dolgozok.Desktop.Models;
+using Dolgozok.Desktop.Repos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,14 @@ namespace Dolgozok.Desktop.ViewModels
 {
     public class MainViewModel
     {
-        private DolgozokContext _context;
+        private DolgozokRepo _repo;
         public ControlPanelViewModel ControlPanelViewModel { get; set; }
 
 
         public MainViewModel()
         {
-            _context = new DolgozokContext();
-            ControlPanelViewModel = new ControlPanelViewModel(_context);
+            _repo = new DolgozokRepo();
+            ControlPanelViewModel = new ControlPanelViewModel(_repo);
         }
     }
 }

@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Dolgozok.Desktop.Models;
+using Dolgozok.Desktop.Repos;
 
 namespace Dolgozok.Desktop
 {
     public partial class ControlPanelViewModel: ObservableObject
     {
-        private DolgozokContext _context;
+        private readonly DolgozokRepo _repo;
 
         [ObservableProperty]
         private string _numberOfWorkers = string.Empty;
@@ -24,9 +27,19 @@ namespace Dolgozok.Desktop
         [ObservableProperty]
         private string _averageSalary = string.Empty;
 
-        public ControlPanelViewModel(DolgozokContext context)
+        [ObservableProperty]
+        public ObservableCollection<Manyworker> _dolgozok = new ObservableCollection<Manyworker><Manyworker>();
+
+        public ControlPanelViewModel(DolgozokRepo repo)
         {
-            _context = context;
+            _repo = repo;
+            NumberOfWorkers = $"{_repo.GetNumberOfWorkers()} fő";
+            WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithSalary()} fő";
+            WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
+            AverageSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
+            _dolgozok = _repo.GetAll();
         }
+
+
     }
 }
