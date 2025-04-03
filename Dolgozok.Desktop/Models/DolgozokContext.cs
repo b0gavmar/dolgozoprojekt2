@@ -28,7 +28,7 @@ public partial class DolgozokContext : DbContext
         modelBuilder.Entity<Employee>(entity =>
         {
             entity
-                //.HasNoKey()
+                .HasNoKey()
                 .ToTable("manyworker");
 
             entity.Property(e => e.Email).HasColumnName("email");
@@ -36,7 +36,6 @@ public partial class DolgozokContext : DbContext
             entity.Property(e => e.Salary)
                 .HasColumnType("INT")
                 .HasColumnName("salary");
-            entity.HasKey(e => e.Email);
         });
 
         modelBuilder.Entity<Employee>(entity =>

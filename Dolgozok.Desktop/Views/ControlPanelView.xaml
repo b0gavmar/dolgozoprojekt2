@@ -12,8 +12,17 @@
         <TextBlock Text="{Binding WorkersWithoutSalary}"></TextBlock>
         <TextBlock Text="{Binding AverageSalary}"></TextBlock>
         <ListBox
-            ItemsSource="{Binding Dolgozok}">
+            ItemsSource="{Binding Dolgozok}"
+            SelectedItem="{Binding CurrentEmployee}">
             
         </ListBox>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Text="{Binding NewSalary}"></TextBox>
+            <Button Command="{Binding RemoveEmployeeCommand}" Content="Add Worker" />
+                <Button Command="{Binding PaySalaryCommand}" Content="Remove Worker" />
+        </StackPanel>
+        
+            
+        
     </StackPanel>
 </UserControl>

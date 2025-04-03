@@ -29,6 +29,12 @@ namespace Dolgozok.Desktop
         private string _averageSalary = string.Empty;
 
         [ObservableProperty]
+        private int _newSalary = 0;
+
+        [ObservableProperty]
+        private Employee _currentEmployee;
+
+        [ObservableProperty]
         public ObservableCollection<Employee> _dolgozok = new ObservableCollection<Employee>();
 
         public ControlPanelViewModel(DolgozokRepo repo)
@@ -44,6 +50,7 @@ namespace Dolgozok.Desktop
             {
                 _dolgozok.Add(worker);
             }
+            _currentEmployee = _dolgozok.FirstOrDefault();
         }
 
         [RelayCommand]
