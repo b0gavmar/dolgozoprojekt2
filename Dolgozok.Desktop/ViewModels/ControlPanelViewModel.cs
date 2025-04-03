@@ -11,7 +11,7 @@ using Dolgozok.Desktop.Repos;
 
 namespace Dolgozok.Desktop
 {
-    public partial class ControlPanelViewModel: ObservableObject
+    public partial class ControlPanelViewModel : ObservableObject
     {
         private readonly DolgozokRepo _repo;
 
@@ -28,18 +28,21 @@ namespace Dolgozok.Desktop
         private string _averageSalary = string.Empty;
 
         [ObservableProperty]
-        public ObservableCollection<Manyworker> _dolgozok = new ObservableCollection<Manyworker><Manyworker>();
+        public ObservableCollection<Manyworker> _dolgozok = new ObservableCollection<Manyworker>();
 
         public ControlPanelViewModel(DolgozokRepo repo)
         {
             _repo = repo;
             NumberOfWorkers = $"{_repo.GetNumberOfWorkers()} fő";
             WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithSalary()} fő";
-            WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
-            AverageSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
-            _dolgozok = _repo.GetAll();
+            WorkersWithoutSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
+            AverageSalary = $"{_repo.GetAverageSalary()} Ft";
+
+            _dolgozok.Clear();
+            foreach (var worker in _repo.GetAll())
+            {
+                _dolgozok.Add(worker);
+            }
         }
-
-
     }
 }
