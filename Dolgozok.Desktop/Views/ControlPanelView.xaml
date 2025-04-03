@@ -13,7 +13,7 @@
         <TextBlock Text="{Binding AverageSalary}"></TextBlock>
         <ListBox
             ItemsSource="{Binding Dolgozok}"
-            SelectedItem="{Binding CurrentEmployee}">
+            SelectedItem="{Binding CurrentEmployee}" Height="300">
         </ListBox>
         <StackPanel Orientation="Horizontal">
             <TextBox Text="{Binding NewSalary}"></TextBox>

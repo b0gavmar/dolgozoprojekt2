@@ -10,9 +10,4 @@ public partial class Manyworker
     public string? Email { get; set; }
 
     public int? Salary { get; set; }
-
-    public override string ToString()
-    {
-        return "asd";
-    }
 }
