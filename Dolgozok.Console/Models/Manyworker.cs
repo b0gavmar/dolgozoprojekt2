@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Dolgozok.Desktop.Models;
+namespace Dolgozok.Console.Models;
 
 public partial class Manyworker
 {

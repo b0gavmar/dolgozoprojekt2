@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dolgozok.Desktop.Models;
+namespace Dolgozok.Console.Models;
 
 public partial class DolgozokContext : DbContext
 {

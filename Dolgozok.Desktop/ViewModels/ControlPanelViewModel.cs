@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Dolgozok.Desktop.Models;
 using Dolgozok.Desktop.Repos;
 
@@ -28,7 +29,7 @@ namespace Dolgozok.Desktop
         private string _averageSalary = string.Empty;
 
         [ObservableProperty]
-        public ObservableCollection<Manyworker> _dolgozok = new ObservableCollection<Manyworker>();
+        public ObservableCollection<Employee> _dolgozok = new ObservableCollection<Employee>();
 
         public ControlPanelViewModel(DolgozokRepo repo)
         {
@@ -42,6 +43,33 @@ namespace Dolgozok.Desktop
             foreach (var worker in _repo.GetAll())
             {
                 _dolgozok.Add(worker);
+            }
+        }
+
+        [RelayCommand]
+        public void PaySalary(Employee employee)
+        {
+            if (employee != null)
+            {
+                employee.Pay(1000);
+                OnPropertyChanged(nameof(Dolgozok));
+                NumberOfWorkers = $"{_repo.GetNumberOfWorkers()} fő";
+                WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithSalary()} fő";
+                WorkersWithoutSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
+                AverageSalary = $"{_repo.GetAverageSalary()} Ft";
+            }
+        }
+
+        [RelayCommand]
+        public void RemoveEmployee(Employee employee)
+        {
+            if (employee != null)
+            {
+                _dolgozok.Remove(employee);
+                NumberOfWorkers = $"{_repo.GetNumberOfWorkers()} fő";
+                WorkersWithSalary = $"{_repo.GetNumberOfWorkersWithSalary()} fő";
+                WorkersWithoutSalary = $"{_repo.GetNumberOfWorkersWithoutSalary()} fő";
+                AverageSalary = $"{_repo.GetAverageSalary()} Ft";
             }
         }
     }
